@@ -77,3 +77,15 @@ var max = function(list, m) {
 		return m;
 	}
 };
+
+var min = function(list, m) {
+	m = m || list.head;
+	m = list.head < m ? list.head : m;
+
+	if (list.tail) {
+		return min(list.tail, m);
+	}
+	else {
+		return m;
+	}
+};
