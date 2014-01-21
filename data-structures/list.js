@@ -66,26 +66,14 @@ var foldl = function(list, fn, acc) {
 	}
 };
 
-var max = function(list, m) {
-	m = m || list.head;
-	m = list.head > m ? list.head : m;
-
-	if (list.tail) {
-		return max(list.tail, m);
-	}
-	else {
-		return m;
-	}
+var max = function(list) {
+	return foldl(list, function(l, a) {
+		return l.head > a ? l.head : a;
+	}, list.head);
 };
 
 var min = function(list, m) {
-	m = m || list.head;
-	m = list.head < m ? list.head : m;
-
-	if (list.tail) {
-		return min(list.tail, m);
-	}
-	else {
-		return m;
-	}
+	return foldl(list, function(l, a) {
+		return l.head < a ? l.head : a;
+	}, list.head);
 };
