@@ -77,3 +77,9 @@ var min = function(list, m) {
 		return l.head < a ? l.head : a;
 	}, list.head);
 };
+
+var print = function(list) {
+	console.log(map(list, function(l) {
+		return l.head;
+	}));
+};
