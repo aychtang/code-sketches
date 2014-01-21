@@ -7,9 +7,17 @@ var makeList = function(item) {
 	};
 };
 
+var recurse = function(list, base) {
+	if (base(list)) return list;
+	else if (list.tail) {
+		return recurse(list.tail, base);
+	}
+};
+
 var last = function(list) {
-	if (list.tail == null) return list;
-	else return last(list.tail);
+	return recurse(list, function(l) {
+		return l.tail == null;
+	});
 };
 
 var value = function(list) {
@@ -23,8 +31,9 @@ var insert = function(list, item) {
 };
 
 var predecessor = function(list, node) {
-	if (list.tail === node) return list;
-	else return predecessor(list.tail, node);
+	return recurse(list, function(l) {
+		return l.tail === node;
+	});
 };
 
 var successor = function(node) {
