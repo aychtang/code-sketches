@@ -78,6 +78,12 @@ var min = function(list, m) {
 	}, list.head);
 };
 
+var length = function(list) {
+	return foldl(list, function(l, a) {
+		return a + 1;
+	});
+};
+
 var print = function(list) {
 	console.log(map(list, function(l) {
 		return l.head;
