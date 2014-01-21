@@ -24,7 +24,7 @@ var insert = function(list, item) {
 
 var predecessor = function(list, node) {
 	if (list.tail === node) return list;
-	else return findPredecessor(list.tail, node);
+	else return predecessor(list.tail, node);
 };
 
 var successor = function(node) {
