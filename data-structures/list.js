@@ -58,7 +58,7 @@ var foldl = function(list, fn, acc) {
 
 var map = function(list, fn) {
 	return foldl(list, function(l, a) {
-		a.push(l.head);
+		a.push(fn(l));
 		return a;
 	}, []);
 };
