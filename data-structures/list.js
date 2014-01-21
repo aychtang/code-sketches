@@ -46,16 +46,6 @@ var remove = function(list, node) {
 	prev.tail = tail;
 };
 
-var map = function(list, fn, result) {
-	result = result || [];
-	result.push(fn(list));
-	if (list.tail) {
-		return map(list.tail, fn, result);
-	} else {
-		return result;
-	}
-};
-
 var foldl = function(list, fn, acc) {
 	acc = acc || 0;
 	acc = fn(list, acc);
@@ -64,6 +54,13 @@ var foldl = function(list, fn, acc) {
 	} else {
 		return acc;
 	}
+};
+
+var map = function(list, fn) {
+	return foldl(list, function(l, a) {
+		a.push(l.head);
+		return a;
+	}, []);
 };
 
 var max = function(list) {
