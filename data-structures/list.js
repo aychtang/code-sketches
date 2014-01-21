@@ -65,3 +65,15 @@ var foldl = function(list, fn, acc) {
 		return acc;
 	}
 };
+
+var max = function(list, m) {
+	m = m || list.head;
+	m = list.head > m ? list.head : m;
+
+	if (list.tail) {
+		return max(list.tail, m);
+	}
+	else {
+		return m;
+	}
+};
