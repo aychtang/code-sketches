@@ -8,7 +8,9 @@ var makeList = function(item) {
 };
 
 var recurse = function(list, base) {
-	if (base(list)) return list;
+	if (base(list)) {
+		return list;
+	}
 	else if (list.tail) {
 		return recurse(list.tail, base);
 	}
@@ -20,20 +22,18 @@ var last = function(list) {
 	});
 };
 
-var value = function(list) {
-	return list.head;
-};
-
 var insert = function(list, item) {
-	var newNode = makeList(item);
-	last(list).tail = newNode;
-	return newNode;
+	last(list).tail = makeList(item);
 };
 
 var predecessor = function(list, node) {
 	return recurse(list, function(l) {
 		return l.tail === node;
 	});
+};
+
+var value = function(list) {
+	return list.head;
 };
 
 var successor = function(node) {
@@ -49,9 +49,11 @@ var remove = function(list, node) {
 var foldl = function(list, fn, acc) {
 	acc = acc || 0;
 	acc = fn(list, acc);
+
 	if (list.tail) {
 		return foldl(list.tail, fn, acc);
-	} else {
+	}
+	else {
 		return acc;
 	}
 };
@@ -79,6 +81,12 @@ var length = function(list) {
 	return foldl(list, function(l, a) {
 		return a + 1;
 	});
+};
+
+var every = function(list, predicate) {
+	return foldl(list, function(l) {
+		return predicate(l);
+	}, true);
 };
 
 var print = function(list) {
