@@ -7,6 +7,13 @@ var makeList = function(item) {
 	};
 };
 
+var clone = function(list) {
+	return {
+		head: list.head,
+		tail: list.tail
+	};
+};
+
 var recurse = function(list, base) {
 	if (base(list)) {
 		return list;
@@ -23,7 +30,9 @@ var last = function(list) {
 };
 
 var insert = function(list, item) {
-	last(list).tail = makeList(item);
+	var newList = clone(list);
+	last(newList).tail = makeList(item);
+	return newList;
 };
 
 var predecessor = function(list, node) {
@@ -41,9 +50,11 @@ var successor = function(node) {
 };
 
 var remove = function(list, node) {
-	var prev = predecessor(list, node);
+	var newList = clone(list);
+	var prev = predecessor(newList, node);
 	var tail = node.tail ? node.tail : undefined;
 	prev.tail = tail;
+	return newList;
 };
 
 var foldl = function(list, fn, acc) {
