@@ -100,6 +100,12 @@ var every = function(list, predicate) {
 	}, true);
 };
 
+var any = function(list, predicate) {
+	return foldl(list, function(l) {
+		return predicate(l);
+	}, false);
+};
+
 var print = function(list) {
 	console.log(map(list, function(l) {
 		return l.head;
