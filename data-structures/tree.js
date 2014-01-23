@@ -22,17 +22,13 @@ var find = function(tree, item) {
 };
 
 var insert = function(tree, item) {
-	if (item < tree.item) {
-		if (!tree.left)
-			tree.left = makeTree(tree, item);
-		else
-			insert(tree.left, item);
+	var direction = item < tree.item ? 'left' : 'right';
+
+	if (tree[direction]) {
+		insert(tree[direction], item);
+	}
+	else {
+		tree[direction] = makeTree(tree, item);
 	}
 
-	else if (item >= tree.item) {
-		if (!tree.right)
-			tree.right = makeTree(tree, item);
-		else
-			insert(tree.right, item);
-	}
 };
