@@ -30,5 +30,16 @@ var insert = function(tree, item) {
 	else {
 		tree[direction] = makeTree(tree, item);
 	}
+};
 
+var traverse = function(tree, fn, queue) {
+	var fifo = queue || [];
+	fn(tree);
+	tree.left && fifo.push(tree.left);
+	tree.right && fifo.push(tree.right);
+
+	if (fifo.length) {
+		var next = fifo.shift();
+		traverse(next, fn, fifo);
+	}
 };
