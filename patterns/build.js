@@ -1,4 +1,3 @@
-
 // Build function runs init method on a module and returns it.
 // Allowing you to init modules and keep a reference to them in one line.
 
@@ -9,6 +8,6 @@ var build = function(module) {
 
 var App = function() {};
 
-App.init = function() {
+App.prototype.init = function() {
 	this.module = build(new App.module());
 };
