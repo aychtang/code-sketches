@@ -1,3 +1,4 @@
+// Type definitions.
 var TodoList = (function () {
     function TodoList() {
         this.todos = [];
@@ -8,10 +9,7 @@ var TodoList = (function () {
     return TodoList;
 })();
 
-function getTask(todo) {
-    return todo.task;
-}
-
+// Helper methods.
 function renderItem(el, item) {
     var newNode = document.createElement('li');
     newNode.innerText = item.task;
@@ -19,11 +17,13 @@ function renderItem(el, item) {
 }
 
 function renderList(list) {
+    var listEl = document.getElementById('list');
     list.todos.forEach(function (item) {
-        renderItem(document.getElementById('list'), item);
+        renderItem(listEl, item);
     });
 }
 
+// Initalisation code.
 var list = new TodoList();
 list.add({ task: 'hello mom', done: false });
 renderList(list);

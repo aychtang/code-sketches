@@ -1,9 +1,12 @@
 
+	// Type definitions.
 	class TodoList {
 		todos: Todo[];
+
 		constructor () {
 			this.todos = [];
 		}
+
 		add(todo : Todo) {
 			this.todos.push(todo);
 		}
@@ -14,22 +17,21 @@
 		done: boolean;
 	}
 
-	function getTask(todo : Todo) {
-		return todo.task;
-	}
-
-	function renderItem(el, item: Todo) {
+	// Helper methods.
+	function renderItem(el, item : Todo) {
 		var newNode = document.createElement('li');
 		newNode.innerText = item.task;
 		el.appendChild(newNode);
 	}
 
-	function renderList(list: TodoList) {
-		list.todos.forEach(function(item: Todo) {
-			renderItem(document.getElementById('list'), item);
+	function renderList(list : TodoList) {
+		var listEl = document.getElementById('list')
+		list.todos.forEach(function(item : Todo) {
+			renderItem(listEl, item);
 		});
 	}
 
+	// Initalisation code.
 	var list = new TodoList();
 	list.add({task:'hello mom', done:false});
 	renderList(list);
