@@ -16,8 +16,14 @@
 				return i.task === item;
 			});
 		}
+
+		// Toggles done property of todo item.
+		toggle(todo: Todo) {
+			todo.done = !todo.done;
+		}
 	}
 
+	// Should add uid.
 	interface Todo {
 		task: string;
 		done: boolean;
@@ -35,6 +41,7 @@
 	function renderItem(el, item : Todo) {
 		var newNode = document.createElement('li');
 		newNode.innerText = item.task;
+		newNode.className = item.done ? 'completed' : 'incomplete';
 		el.appendChild(newNode);
 	}
 
@@ -45,6 +52,11 @@
 			renderItem(listEl, item);
 		});
 	}
+
+	// Returns target of an event as a HTMLElement.
+	function getTarget(event : Event) {
+		return <HTMLElement> event.target;
+  }
 
 	// Event handlers.
 
@@ -59,6 +71,13 @@
 			clearInput(inputEl);
 			renderList(list);
 		}
+	});
+
+	// List container handler, toggles target model done value and rerenders list.
+	document.getElementById('list').addEventListener('click', function(e) {
+		var target = getTarget(e);
+		list.toggle(list.find(target.innerText)[0]);
+		renderList(list);
 	});
 
 	// Initalisation code.
