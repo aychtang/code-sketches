@@ -3,12 +3,18 @@
 	class TodoList {
 		todos: Todo[];
 
-		constructor () {
+		constructor() {
 			this.todos = [];
 		}
 
 		add(todo : Todo) {
 			this.todos.push(todo);
+		}
+
+		find(item : string) {
+			return this.todos.filter(function(i) {
+				return i.task === item;
+			});
 		}
 	}
 
@@ -44,7 +50,7 @@
 
 	// Reference to input element casted to correct type,
 	// the standard HTML Element type does not have a 'value' property.
-	var inputEl = <HTMLInputElement>document.getElementById('todo-input');
+	var inputEl = <HTMLInputElement> document.getElementById('todo-input');
 
 	// Add button handler.
 	document.getElementById('add-button').addEventListener('click', function(e) {

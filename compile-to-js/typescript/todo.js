@@ -6,6 +6,12 @@ var TodoList = (function () {
     TodoList.prototype.add = function (todo) {
         this.todos.push(todo);
     };
+
+    TodoList.prototype.find = function (item) {
+        return this.todos.filter(function (i) {
+            return i.task === item;
+        });
+    };
     return TodoList;
 })();
 
