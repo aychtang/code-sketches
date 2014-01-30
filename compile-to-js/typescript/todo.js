@@ -33,14 +33,17 @@ function renderList(list) {
 }
 
 // Event handlers.
+// Reference to input element casted to correct type,
+// the standard HTML Element type does not have a 'value' property.
 var inputEl = document.getElementById('todo-input');
 
 // Add button handler.
 document.getElementById('add-button').addEventListener('click', function (e) {
-    console.log(inputEl.value);
-    list.add({ task: inputEl.value, done: false });
-    clearInput(inputEl);
-    renderList(list);
+    if (inputEl.value.length) {
+        list.add({ task: inputEl.value, done: false });
+        clearInput(inputEl);
+        renderList(list);
+    }
 });
 
 // Initalisation code.

@@ -48,9 +48,11 @@
 
 	// Add button handler.
 	document.getElementById('add-button').addEventListener('click', function(e) {
-		list.add({task: inputEl.value, done: false});
-		clearInput(inputEl);
-		renderList(list);
+		if (inputEl.value.length) {
+			list.add({task: inputEl.value, done: false});
+			clearInput(inputEl);
+			renderList(list);
+		}
 	});
 
 	// Initalisation code.
