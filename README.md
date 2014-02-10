@@ -5,5 +5,5 @@ This repo contains small 'sketches' of code I'm currently revising, exploring or
 
 Currently looking at:
 
-Comparing compile to JS languages,
-Recursive data structures
+* Comparing compile to JS languages,
+* Recursive data structures
