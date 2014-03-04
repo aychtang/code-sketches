@@ -5,7 +5,7 @@ var Y = function(f) {
 };
 
 var Ymem = function(f, cache) {
-	var cache = cache || {};
+	cache = cache || {};
 	return function(n) {
 		if (!cache[n]) {
 			cache[n] = f(function(n) {
